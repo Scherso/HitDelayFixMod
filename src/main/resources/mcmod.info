@@ -1,0 +1,20 @@
+[
+  {
+    "modid": "${id}",
+    "name": "${name}",
+    "description": "A forge mod for minecraft 1.8 that sets leftClickCounter to 0 after a MISS, therefore fixing the hit delay problem in 1.8.",
+    "version": "${version}",
+    "mcversion": "${mcversion}",
+    "url": "https://github.com/Scherso/HitDelayFixMod",
+    "updateUrl": "",
+    "authorList": [
+      "Ghast",
+      "Scherso"
+    ],
+    "credits": "",
+    "logoFile": "",
+    "screenshots": [],
+    "dependencies": [
+    ]
+  }
+]
