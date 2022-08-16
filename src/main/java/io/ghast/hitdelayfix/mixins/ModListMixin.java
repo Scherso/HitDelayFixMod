@@ -1,6 +1,7 @@
 package io.ghast.hitdelayfix.mixins;
 
 import io.ghast.hitdelayfix.HitDelayFix;
+import net.minecraft.client.Minecraft;
 import net.minecraftforge.fml.common.ModContainer;
 import net.minecraftforge.fml.common.network.handshake.FMLHandshakeMessage;
 import org.spongepowered.asm.mixin.Mixin;
@@ -26,7 +27,8 @@ public class ModListMixin extends FMLHandshakeMessage {
      */
     @Inject(method = "<init>(Ljava/util/List;)V", at = @At("RETURN"), remap = false)
     private void removeMod(List<ModContainer> modList, CallbackInfo ci) {
-        modTags.keySet().removeIf(key -> key.equalsIgnoreCase(HitDelayFix.ID));
+        if (!Minecraft.getMinecraft().isSingleplayer())
+            modTags.keySet().removeIf(key -> key.equalsIgnoreCase(HitDelayFix.ID));
     }
 
 }
