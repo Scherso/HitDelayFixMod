@@ -29,8 +29,8 @@ public class HitDelayFix
     @SuppressWarnings("unused")
     public static int getHitDelay()
     {
-        if (INSTANCE.isEnabled) return 0;
-        return 10;
+        if (INSTANCE.isEnabled) return (0);
+        return (10);
     }
 
     @Mod.EventHandler

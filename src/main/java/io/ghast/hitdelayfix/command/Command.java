@@ -28,7 +28,7 @@ public class Command extends CommandBase
     @Override
     public final String getCommandUsage(ICommandSender sender)
     {
-        return ("/" + this.getCommandName() + " <subcommand>");
+        return ("usage: /" + this.getCommandName() + " enable, disable.");
     }
 
     @Override
@@ -53,7 +53,7 @@ public class Command extends CommandBase
                     sender.addChatMessage(new ChatComponentText(EnumChatFormatting.GRAY + "[" + EnumChatFormatting.RED + "HitDelayFix" + EnumChatFormatting.GRAY + "] " + EnumChatFormatting.RED + "Disabled."));
                     break;
                 default:
-                    sender.addChatMessage(new ChatComponentText(EnumChatFormatting.RED + "usage: " + this.getCommandName() + "<subcommand>"));
+                    sender.addChatMessage(new ChatComponentText(EnumChatFormatting.RED + this.getCommandUsage(sender)));
             }
         }
         HitDelayFix.INSTANCE.saveConfig();
