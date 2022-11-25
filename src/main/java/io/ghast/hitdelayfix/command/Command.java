@@ -10,29 +10,40 @@ import net.minecraft.util.EnumChatFormatting;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Command extends CommandBase {
+public class Command extends CommandBase
+{
 
-    List<String> subCommands = new ArrayList<String>() {{
+    final List<String> SUB_COMMANDS = new ArrayList<String>()
+    {{
         add("enable");
         add("disable");
-        add("toggle");
     }};
 
-    public String getCommandName() {
-        return HitDelayFix.ID;
+    @Override
+    public final String getCommandName()
+    {
+        return (HitDelayFix.ID);
     }
 
-    public String getCommandUsage(ICommandSender sender) {
-        return "/" + this.getCommandName() + "<subcommand>";
+    @Override
+    public final String getCommandUsage(ICommandSender sender)
+    {
+        return ("/" + this.getCommandName() + " <subcommand>");
     }
 
-    public boolean canCommandSenderUseCommand(ICommandSender sender) {
-        return true;
+    @Override
+    public final boolean canCommandSenderUseCommand(ICommandSender sender)
+    {
+        return (true);
     }
 
-    public void processCommand(ICommandSender sender, String[] args) {
-        if (args.length > 0) {
-            switch (args[0].toLowerCase()) {
+    @Override
+    public void processCommand(ICommandSender sender, String[] args)
+    {
+        if (args.length > 0)
+        {
+            switch (args[0].toLowerCase())
+            {
                 case "enable":
                     HitDelayFix.INSTANCE.isEnabled = true;
                     sender.addChatMessage(new ChatComponentText(EnumChatFormatting.GRAY + "[" + EnumChatFormatting.RED + "HitDelayFix" + EnumChatFormatting.GRAY + "] " + EnumChatFormatting.GREEN + "Enabled."));
@@ -41,14 +52,6 @@ public class Command extends CommandBase {
                     HitDelayFix.INSTANCE.isEnabled = false;
                     sender.addChatMessage(new ChatComponentText(EnumChatFormatting.GRAY + "[" + EnumChatFormatting.RED + "HitDelayFix" + EnumChatFormatting.GRAY + "] " + EnumChatFormatting.RED + "Disabled."));
                     break;
-                case "toggle":
-                    HitDelayFix.INSTANCE.isEnabled = !HitDelayFix.INSTANCE.isEnabled;
-                    if (HitDelayFix.INSTANCE.isEnabled) {
-                        sender.addChatMessage(new ChatComponentText(EnumChatFormatting.GRAY + "[" + EnumChatFormatting.RED + "HitDelayFix" + EnumChatFormatting.GRAY + "] " + EnumChatFormatting.RED + "Disabled."));
-                    } else {
-                        sender.addChatMessage(new ChatComponentText(EnumChatFormatting.GRAY + "[" + EnumChatFormatting.RED + "HitDelayFix" + EnumChatFormatting.GRAY + "] " + EnumChatFormatting.GREEN + "Enabled."));
-                    }
-                    break;
                 default:
                     sender.addChatMessage(new ChatComponentText(EnumChatFormatting.RED + "usage: " + this.getCommandName() + "<subcommand>"));
             }
@@ -56,8 +59,10 @@ public class Command extends CommandBase {
         HitDelayFix.INSTANCE.saveConfig();
     }
 
-    public List<String> addTabCompletionOptions(ICommandSender sender, String[] args, BlockPos pos) {
-        return subCommands;
+    @Override
+    public List<String> addTabCompletionOptions(ICommandSender sender, String[] args, BlockPos pos)
+    {
+        return (this.SUB_COMMANDS);
     }
 
 }
