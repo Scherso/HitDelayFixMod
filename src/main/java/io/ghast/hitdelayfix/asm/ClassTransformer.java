@@ -4,10 +4,7 @@ import net.minecraft.launchwrapper.IClassTransformer;
 import net.minecraftforge.fml.common.asm.transformers.deobf.FMLDeobfuscatingRemapper;
 import org.objectweb.asm.ClassReader;
 import org.objectweb.asm.ClassWriter;
-import org.objectweb.asm.tree.AbstractInsnNode;
-import org.objectweb.asm.tree.ClassNode;
-import org.objectweb.asm.tree.MethodInsnNode;
-import org.objectweb.asm.tree.MethodNode;
+import org.objectweb.asm.tree.*;
 
 import static org.objectweb.asm.Opcodes.BIPUSH;
 import static org.objectweb.asm.Opcodes.INVOKESTATIC;
@@ -31,7 +28,7 @@ public class ClassTransformer implements IClassTransformer
             {
                 for (final AbstractInsnNode INSN : method.instructions.toArray())
                 {
-                    if (INSN.getOpcode() == BIPUSH)
+                    if (INSN.getOpcode() == BIPUSH && ((IntInsnNode) INSN).operand == 10)
                     {
                         method.instructions.set(INSN, new MethodInsnNode(
                                 INVOKESTATIC,
